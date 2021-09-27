@@ -30,7 +30,7 @@ node('master')
             echo $PATH
             echo ${WORKSPACE}
             mvn versions:set -DnewVersion=${BUILD_NUMBER}
-            mvn -Dmaven.test.failure.ignore=true clean package ''' 
+            mvn clean install ''' 
          }
     stage('Code Quality Analysis') 
         {
