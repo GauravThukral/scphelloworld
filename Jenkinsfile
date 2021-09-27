@@ -5,7 +5,7 @@ node('master')
         {
    
         echo 'Checking out code...'
-        def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GITHUB', url: 'https://github.com/GauravThukral/scphelloworld.git']]])
+        def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GITHUB', url: 'https://github.com/GauravThukral/scphelloworld.git']]])
             echo "scmVars.GIT_COMMIT"
             echo "${scmVars.GIT_COMMIT}"
             env.GIT_COMMIT = scmVars.GIT_COMMIT
