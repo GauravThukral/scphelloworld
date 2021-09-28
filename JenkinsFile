@@ -11,7 +11,7 @@ node('master')
             env.GIT_COMMIT = scmVars.GIT_COMMIT
             echo "env.GIT_COMMIT"
             echo "${env.GIT_COMMIT}"
-    	      def name = "${env.Docker_Repo_Url}/spring-petclinic"  
+    	      def name = "${env.Docker_Repo_Url}/scphelloworld"  
               def version = "${env.BUILD_NUMBER}"
             echo "${name}"
             echo "${version}"
@@ -32,7 +32,7 @@ node('master')
             mvn versions:set -DnewVersion=${BUILD_NUMBER}
             mvn clean install ''' 
          }
-    stage('Code Quality Analysis') 
+    /*stage('Code Quality Analysis') 
         {
             echo 'Analysing code...'
             env.SONARURL = "${env.Sonar_Url}"
@@ -42,10 +42,10 @@ node('master')
              mvn sonar:sonar -Dsonar.login=${sonaruser} -Dsonar.password=${sonarpassword} -Dsonar.host.url=\'https://sonar_url/\'
              '''
              }
-        }
+        }*/
     stage('Build Docker Image') {
                 echo 'Building ..'
- 		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
+ 		        # withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
  		        sh '''
  		           docker build -t $IMAGENAME:$IMAGETAG --build-arg version=${IMAGETAG} .
