@@ -55,7 +55,7 @@ node('master')
  		        withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
  		        sh '''
- 		        docker login $DOCKERREPO -u ${registryuser} -p ${registrypassword}
+ 		        docker login -u ${registryuser} -p ${registrypassword}
  		        docker push $IMAGENAME:$IMAGETAG
                 docker tag $IMAGENAME:$IMAGETAG $IMAGENAME:latest
                 docker push $IMAGENAME:latest 
