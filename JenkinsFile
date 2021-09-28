@@ -45,11 +45,10 @@ node('master')
         }*/
     stage('Build Docker Image') {
                 echo 'Building ..'
- 		        {
  		        sh '''
  		           docker build -t $IMAGENAME:$IMAGETAG --build-arg version=${IMAGETAG} .
  		        '''
-            }
+          
         }
     stage('Push Docker Image to Docker Registry') {
                 echo "Pushing to Registry .. ${env.DOCKERREPO}"
