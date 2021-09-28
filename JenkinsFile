@@ -52,7 +52,7 @@ node('master')
         }
     stage('Push Docker Image to Docker Registry') {
                 echo "Pushing to Registry .. ${env.DOCKERREPO}"
- 		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
+ 		        withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
  		        sh '''
  		        docker login $DOCKERREPO -u ${registryuser} -p ${registrypassword}
