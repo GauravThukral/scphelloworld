@@ -50,6 +50,11 @@ node('master')
  		        '''
           
         }
+	
+    stage ('Aqua Microscanner') {
+           echo 'Scanning ..'
+	          aquaMicroscanner imageName: $IMAGENAME:$IMAGETAG , notCompliedCmd: 'exit 1' , onDisallowed: 'fail' 
+           }
     stage('Push Docker Image to Docker Registry') {
                 echo "Pushing to Registry .. ${env.DOCKERREPO}"
  		        withCredentials([usernamePassword(credentialsId: 'dockerhub_id', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
