@@ -53,7 +53,9 @@ node('master')
 	
     stage ('Aqua Microscanner') {
            echo 'Scanning ..'
-	          aquaMicroscanner imageName: $IMAGENAME:$IMAGETAG , notCompliedCmd: 'exit 1' , onDisallowed: 'fail' 
+	          sh '''
+		  usr/local/bin/trivy image $IMAGENAME:$IMAGETAG
+		  '''
            }
     stage('Push Docker Image to Docker Registry') {
                 echo "Pushing to Registry .. ${env.DOCKERREPO}"
