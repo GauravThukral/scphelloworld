@@ -54,7 +54,7 @@ node('master')
     stage ('Aqua Microscanner') {
            echo 'Scanning ..'
 	          sh '''
-		  usr/local/bin/trivy image $IMAGENAME:$IMAGETAG
+		  /usr/local/bin/trivy image $IMAGENAME:$IMAGETAG
 		  '''
            }
     stage('Push Docker Image to Docker Registry') {
