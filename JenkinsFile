@@ -73,6 +73,6 @@ node('master')
         }
    stage('Deploy to Openshift') {
           echo "Deploying into openshift.."
-	       os status
+	       oc status
 	}
 }
