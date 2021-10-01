@@ -74,6 +74,7 @@ node('master')
    stage('Deploy to Openshift') {
           echo "Deploying into openshift.."
 	       sh '''
+	       /usr/local/sbin/oc login --token=sha256~3A9vYoyK4mSBERn8xlGlW-Wm7UKDJVNXKRUB_Rhhd3g --server=https://api.sandbox.x8i5.p1.openshiftapps.com:6443 
 	       /usr/local/sbin/oc status
 	       '''
 	}
