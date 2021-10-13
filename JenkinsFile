@@ -14,7 +14,7 @@ pipeline {
                  }
                   steps {
                     container('maven') {
-		       maven(command: "-B clean deploy")
+		           sh "mvn -B deploy"
 		      }
 		   
 		  }
