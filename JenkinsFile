@@ -3,7 +3,6 @@ pipeline {
 		
 	
 	environment {
-		#MVN_CONFIG_ID = "3d1a1dac-4b94-43ba-b36b-bb80892e4576"
 		M2_WORKSPACE = "${env.WORKSPACE}/.m2"
 		M2_REPO = "${env.WORKSPACE}/.repository"
 		M2_SETTINGS = "${env.M2_WORKSPACE}/settings.xml"
