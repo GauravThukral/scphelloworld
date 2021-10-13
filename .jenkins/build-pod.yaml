@@ -6,6 +6,6 @@ spec:
     image: eph6666/jnlp-slave-alpine:v1
     tty: true
   - name: maven
-    image: evermind/jenkins-maven:3-openjdk-17-slim
+    image: chiphwang/jenkins-maven-root:latest
     tty: true
     
