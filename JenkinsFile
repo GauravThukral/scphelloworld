@@ -17,7 +17,7 @@ pipeline {
                     kubernetes {
                       label "kubeagent"
                       defaultContainer 'jnlp'
-                      yamlfile ".jenkins/build-pod.yaml"
+                      yamlFile ".jenkins/build-pod.yaml"
                      }
                  }
                   steps {
