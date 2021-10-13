@@ -3,7 +3,7 @@ pipeline {
 		
 	
 	environment {
-		MVN_CONFIG_ID = "3d1a1dac-4b94-43ba-b36b-bb80892e4576"
+		#MVN_CONFIG_ID = "3d1a1dac-4b94-43ba-b36b-bb80892e4576"
 		M2_WORKSPACE = "${env.WORKSPACE}/.m2"
 		M2_REPO = "${env.WORKSPACE}/.repository"
 		M2_SETTINGS = "${env.M2_WORKSPACE}/settings.xml"
@@ -14,17 +14,21 @@ pipeline {
 
 	stages {
 		stage ('Build') {
-       agent {
-          kubernetes {
-            label "kubeagent"
-            defaultContainer 'jnlp'
-            yamlfile ".jenkins/build-pod.yaml"
-            }
-          }
-			 steps {
-          container('maven'
-				 configFileProvider([configFile(fileId: "${env.MVN_CONFIG_ID}", variable: 'INJECTED_MAVEN_SETTINGS')]) {
-					 sh "mkdir -p ${env.M2_WORKSPACE} && cp ${INJECTED_MAVEN_SETTINGS} ${env.M2_SETTINGS}"
-				 }
-			 }
-		}
+                  agent {
+                    kubernetes {
+                      label "kubeagent"
+                      defaultContainer 'jnlp'
+                      yamlfile ".jenkins/build-pod.yaml"
+                     }
+                 }
+                  steps {
+                    container('maven') {
+		       sh "${env.MVN_CMD} clean deploy}"
+		      }
+		    container('oc') {
+		       dockerBuild(image: "${IMAGE_NAME}") 
+		      }
+		  }
+             }
+	 }
+   }
