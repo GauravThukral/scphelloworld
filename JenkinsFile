@@ -2,14 +2,6 @@ pipeline {
 	agent none
 		
 	
-	environment {
-		M2_WORKSPACE = "${env.WORKSPACE}/.m2"
-		M2_REPO = "${env.WORKSPACE}/.repository"
-		M2_SETTINGS = "${env.M2_WORKSPACE}/settings.xml"
-		// not to confuse with MAVEN_OPTS which is JVM opts only!
-		MAVEN_ARGS = "-B -V -Dmaven.repo.local=${env.M2_REPO} -s ${env.M2_SETTINGS}"
-		MVN_CMD = "mvn ${env.MAVEN_ARGS}"
-	}
 
 	stages {
 		stage ('Build') {
@@ -22,7 +14,7 @@ pipeline {
                  }
                   steps {
                     container('maven') {
-		       sh "${env.MVN_CMD} clean deploy}"
+		       maven(command: "-B clean deploy")
 		      }
 		   
 		  }
