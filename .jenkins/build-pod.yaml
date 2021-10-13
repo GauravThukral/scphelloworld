@@ -3,7 +3,7 @@ kind: Pod
 spec:
  containers:
   - name: jnlp
-    image: jenkins/jnlp-slave-alpine
+    image: eph6666/jnlp-slave-alpine
     tty: true
   - name: maven
     image: chiphwang/jenkins-maven
